@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path: /api-producao
+spring:
+  application:
+    name: Api Producao
+  datasource:
+    url: jdbc:mysql://localhost:3306/tech-producao?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: toor
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+ 
