@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.fiap.techchallenge.api.producao.model.Product;
 import br.fiap.techchallenge.api.producao.model.ProductQuantity;
 import br.fiap.techchallenge.api.producao.service.ProductService;
 

@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,22 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Entity
 @RequiredArgsConstructor
+@Builder
 public class Product {
 	
 	public Product() {}
 	
+	public Product(Long uuid, Long productId, String name, String description, BigDecimal price, CATEGORY CATEGORY,	ProductQuantity productQuantity) {
+		super();
+		this.uuid = uuid;
+		this.productId = productId;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		CATEGORY = CATEGORY;
+		this.productQuantity = productQuantity;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="uuid")

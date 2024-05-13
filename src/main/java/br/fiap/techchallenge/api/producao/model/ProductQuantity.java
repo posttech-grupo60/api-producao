@@ -11,15 +11,25 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
 @Entity
+@Builder
 public class ProductQuantity {
 	
 	ProductQuantity(){}
 	
+	public ProductQuantity(Long id, Product product, int quantity, Order order) {
+		super();
+		this.id = id;
+		this.product = product;
+		this.quantity = quantity;
+		this.order = order;
+	}
+
 	@Id
 	private Long id;
 	

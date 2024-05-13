@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.fiap.techchallenge.api.producao.dto.OrderDTO;
+import br.fiap.techchallenge.api.producao.exception.ResourceNotFoundException;
 import br.fiap.techchallenge.api.producao.model.Order;
 import br.fiap.techchallenge.api.producao.model.Order.KITCHEN_ORDER_STATUS;
 import br.fiap.techchallenge.api.producao.model.ProductQuantity;
@@ -81,5 +83,14 @@ public class OrderService {
 		});
 		order.setProductQuantity(pqEntityList);
 		
+	}
+	
+	
+	public void deleteOrder(Long orderId) {
+		
+		if(orderRepository.findById(orderId).isEmpty())
+			throw new ResourceNotFoundException("Order not found");
+		
+		orderRepository.deleteById(orderId);
 	}
 }

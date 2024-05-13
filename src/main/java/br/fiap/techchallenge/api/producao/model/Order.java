@@ -11,15 +11,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
+@Builder
 @Data
 @Entity
 @Table(name = "kitchen_order")
 public class Order {
 	
 	public Order() {}
+	
+	public Order(Long id, List<ProductQuantity> productQuantity, Long customerId,
+			br.fiap.techchallenge.api.producao.model.Order.KITCHEN_ORDER_STATUS kITCHEN_ORDER_STATUS,
+			LocalDateTime lastUpdate) {
+		super();
+		this.id = id;
+		this.productQuantity = productQuantity;
+		this.customerId = customerId;
+		KITCHEN_ORDER_STATUS = kITCHEN_ORDER_STATUS;
+		this.lastUpdate = lastUpdate;
+	}
+	
 	
 	@Id
 	@NonNull
@@ -47,7 +61,10 @@ public class Order {
 		
 	}
 	
+
+
+
 	@Column(nullable = false)
-	private LocalDateTime lastUpdate = LocalDateTime.now(); 
+	private LocalDateTime lastUpdate; 
 	
 }
