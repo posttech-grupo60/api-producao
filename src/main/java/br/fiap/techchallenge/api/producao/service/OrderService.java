@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +27,13 @@ public class OrderService {
 	ProductQuantityService productQuantityService;
 	
 	private static Logger logger = LogManager.getLogger(OrderService.class);
+	
+	public OrderService() {};
+	
+	public OrderService(OrderRepository orderRepository , ProductQuantityService productQuantityService) {
+		this.orderRepository = orderRepository;
+		this.productQuantityService = productQuantityService;
+	}
 	
 	public List<Order> getAll(){
 		return orderRepository.findAll();

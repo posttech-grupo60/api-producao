@@ -4,13 +4,12 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import br.fiap.techchallenge.api.producao.model.ProductQuantity;
-import br.fiap.techchallenge.api.producao.model.Product.CATEGORY;
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.NonNull;
 
+@Builder
 public class ProductDTO {
 	@Column(name="uuid", length=36)
 	private UUID uuid;

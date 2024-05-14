@@ -17,6 +17,12 @@ public class ProductQuantityService {
 	@Autowired
 	ProductQuantityRepository productQuantityRepository;
 	
+	public ProductQuantityService() {};
+	
+	public ProductQuantityService(ProductQuantityRepository productQuantityRepository) {
+		this.productQuantityRepository = productQuantityRepository;
+	};
+	
 	public ProductQuantity getProductQuantityByProductId(Long long1) {
 		System.out.println("GET PQ by ID:" + long1);
 		return productQuantityRepository.getByProductId(long1);

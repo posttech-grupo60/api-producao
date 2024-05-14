@@ -3,9 +3,11 @@ package br.fiap.techchallenge.api.producao.dto;
 import br.fiap.techchallenge.api.producao.model.Product;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
+@Builder
 @Data
 @AllArgsConstructor
 public class ProductQuantityDTO {
