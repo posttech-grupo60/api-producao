@@ -1,5 +1,7 @@
 package br.fiap.techchallenge.api.producao.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +27,36 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	public OrderController() {}
+	
+	public OrderController(OrderService orderService) {
+		this.orderService = orderService;
+	}
 
 	@GetMapping
 	public ResponseEntity<?> getAllOrders(){
 		
 		try {
 			return ResponseEntity.ok(orderService.getAll());
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@GetMapping("/{orderId}")
+	public ResponseEntity<?> getOrderById(@PathVariable(value = "orderId") Long orderId){
+		
+		try {
+			
+			Optional<Order> orderOp = orderService.getById(orderId);
+			
+			if(orderOp.isEmpty())
+				return ResponseEntity.notFound().build();
+			
+			return ResponseEntity.ok(orderOp.get());
 		}catch(Exception e) {
 			e.printStackTrace();
 			

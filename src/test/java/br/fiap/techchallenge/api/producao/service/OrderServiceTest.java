@@ -1,9 +1,18 @@
 package br.fiap.techchallenge.api.producao.service;
 
-import static org.assertj.core.api.Assertions.fail;
-import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
+import static br.fiap.techchallenge.api.producao.util.TestUtils.createFakeOrder;
+import static br.fiap.techchallenge.api.producao.util.TestUtils.createFakeOrderDTO;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +24,6 @@ import br.fiap.techchallenge.api.producao.dto.OrderDTO;
 import br.fiap.techchallenge.api.producao.model.Order;
 import br.fiap.techchallenge.api.producao.repository.OrderRepository;
 import br.fiap.techchallenge.api.producao.repository.ProductQuantityRepository;
-import br.fiap.techchallenge.api.producao.util.TestUtils;
 
 public class OrderServiceTest {
 	
@@ -45,7 +53,7 @@ public class OrderServiceTest {
 	void mustAllowInserOrder() {
 		
 		//Arrange
-		OrderDTO fakeOrderDTO = TestUtils.createFakeOrderDTO();
+		OrderDTO fakeOrderDTO = createFakeOrderDTO();
 		when(orderRepository.save(any(Order.class)))
 		.then(i -> i.getArgument(0));
 		
@@ -64,21 +72,71 @@ public class OrderServiceTest {
 	
 	@Test
 	void mustAllowGetAllOrders() {
-		fail("Teste nao implementado");
+		
+		//Arrange
+		Order fakeOrder = createFakeOrder();
+		Order fakeOrder2 = createFakeOrder();
+		List<Order> orders = new ArrayList<>();
+		orders.add(fakeOrder);
+		orders.add(fakeOrder2);
+		
+		when(orderRepository.findAll()).thenReturn(orders);
+		
+		//Act
+		List<Order> listFounded = orderRepository.findAll();
+		
+		//Assert
+		assertThat(listFounded).isNotNull();
+		assertThat(listFounded).hasSize(orders.size());
 		
 	}
 	
 	
 	@Test
 	void mustAllowGetOrderById() {
+		Order fakeOrder = createFakeOrder();
+		Long id = fakeOrder.getId();
 		
-		fail("Teste nao implementado");
+		when(orderRepository.findById(any(Long.class))).thenReturn(Optional.of(fakeOrder));
+		
+		Optional<Order> optional = orderRepository.findById(id);
+		
+		assertThat(optional).isPresent().contains(fakeOrder);
+		optional.ifPresent( order -> {
+			assertThat(order.getId()).isEqualTo(id);
+		});
+		
 	}
 	
 	@Test
 	void mustAllowDeleteOrder() {
-		fail("Teste nao implementado");
 		
+		doNothing().when(orderRepository).deleteById(any(Long.class));
+		
+		orderRepository.deleteById(new Random().nextLong());
+		
+		verify(orderRepository, times(1)).deleteById(any(Long.class));
+		
+	}
+	
+	@Test
+	void mustAllowUpdateOrder() {
+		// Arrange
+	    OrderDTO orderDTO = createFakeOrderDTO();
+	    Order fakeOrder = createFakeOrder();
+	    
+	    when(orderRepository.findById(any(Long.class))).thenReturn(Optional.of(fakeOrder));
+	    when(orderRepository.save(any(Order.class))).then(i -> i.getArgument(0));
+
+	    // Act
+	    Order updatedOrder = orderService.putOrder(orderDTO.getId(), orderDTO);
+
+	    // Assert
+	    assertThat(updatedOrder).isNotNull();
+	    assertThat(updatedOrder.getId()).isEqualTo(orderDTO.getId());
+	    assertThat(updatedOrder.getCustomerId()).isEqualTo(orderDTO.getCustomerId());
+	    
+	    verify(orderRepository, times(1)).save(any(Order.class));
 	}
 
 }
