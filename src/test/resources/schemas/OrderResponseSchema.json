@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "productQuantity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "product": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "number"
+              },
+              "productId": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "category": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "uuid",
+              "productId",
+              "name",
+              "description",
+              "price",
+              "category"
+            ]
+          },
+          "quantity": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "product",
+          "quantity"
+        ]
+      }
+    },
+    "customerId": {
+      "type": "number"
+    },
+    "lastUpdate": {
+      "type": "string"
+    },
+    "kitchen_ORDER_STATUS": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "productQuantity",
+    "customerId",
+    "lastUpdate",
+    "kitchen_ORDER_STATUS"
+  ]
+}
