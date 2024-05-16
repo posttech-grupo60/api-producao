@@ -4,6 +4,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 import java.util.Random;
 
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -21,16 +23,18 @@ public class StepsDefinition {
 
 	    private Order orderResponse;
 
-	    private String ENDPOINT_MENSAGENS = "http://localhost:8080/order";
+	    private String ENDPOINT_MENSAGENS = "http://localhost:8080/api-producao/order";
 
 	    @Quando("registrar um novo Order")
 	    public Order submeterNovoOrder() {
+			RestAssured.defaultParser = Parser.JSON;
 	        OrderDTO fakeOrderDTO = TestUtils.createFakeOrderDTO();
 	        response = given()
 	                .contentType(MediaType.APPLICATION_JSON_VALUE)
 	                .body(fakeOrderDTO)
 	                .when().post(ENDPOINT_MENSAGENS);
-	        return response.then().extract().as(Order.class);
+
+			return response.then().extract().as(Order.class);
 	    }
 
 	    @Então("é registrado com sucesso")
