@@ -7,7 +7,7 @@ services:
     ports:
        - 8080:8080
     environment:
-      DATABASE_URL: jdbc:mysql://avnadmin:AVNS_nJqyX7OAonD3J8MwL15@mysql-3751f86f-mysql-fiap4.e.aivencloud.com:17006/tech-producao?ssl-mode=REQUIRED
+      DATABASE_URL: jdbc:mysql://mysql-3751f86f-mysql-fiap4.e.aivencloud.com:17006/tech-producao?ssl-mode=REQUIRED
       DATABASE_USER: avnadmin
       DATABASE_PASS: AVNS_nJqyX7OAonD3J8MwL15
       spring.profiles.active: prod   
