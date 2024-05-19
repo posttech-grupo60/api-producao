@@ -33,16 +33,16 @@ jobs:
       uses: hashicorp/setup-terraform@v3
  
     - name: Terraform Init
-      run: terraform -chdir=tech-fase4-tf-k8s/env/prod init 
+      run: terraform -chdir=tech-fase4-tf-k8s/infra init 
 
     - name: Terraform Validate
-      run: terraform -chdir=tech-fase4-tf-k8s/env/prod validate
+      run: terraform -chdir=tech-fase4-tf-k8s/infra validate
 
     - name: LS
       run: ls
 
     - name: Terraform Apply
-      run: terraform -chdir=tech-fase4-tf-k8s/env/prod apply -auto-approve 
+      run: terraform -chdir=tech-fase4-tf-k8s/infra apply -auto-approve 
   
     - name: Kubectl tool installer
       uses: Azure/setup-kubectl@v3
@@ -63,12 +63,6 @@ jobs:
 
     - name: Criando SVC da APP
       run: kubectl apply -f tech-fase4-tf-k8s/k8s-app/app-svc.yaml
-
-    - name: Criando Metric da APP
-      run: kubectl apply -f tech-fase4-tf-k8s/k8s-app/component-metric.yaml
-
-    - name: Criando HPA  da APP
-      run: kubectl apply -f tech-fase4-tf-k8s/k8s-app/app-hpa.yaml
-    
+      
     - name: Alterando a imagem da APP
       run: kubectl set image deployment/tech-challenge-java-app-deployment tech-challenge-java-pod=${{ vars.DOCKER_IMAGE_NAME }}:${{ vars.DOCKER_IMAGE_VERSION }}
