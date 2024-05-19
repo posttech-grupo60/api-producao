@@ -24,6 +24,7 @@ jobs:
         aws-region: ${{ vars.AWS_REGION }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-skip-session-tagging: true
 
     - run: git clone https://github.com/grunbruno/tech-fase4-tf-k8s.git
 
