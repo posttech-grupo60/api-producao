@@ -21,6 +21,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 5672
+    username: guest
 logging:
   level:
     org:
@@ -29,4 +34,7 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+queue1:
+  name: pedido-recebido
+    
  
