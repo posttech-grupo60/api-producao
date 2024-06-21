@@ -32,7 +32,7 @@ public class Product {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		CATEGORY = CATEGORY;
+		this.CATEGORY = CATEGORY;
 		this.productQuantity = productQuantity;
 	}
 

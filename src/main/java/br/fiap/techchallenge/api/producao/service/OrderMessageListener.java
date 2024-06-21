@@ -28,12 +28,13 @@ public class OrderMessageListener implements IMessageListener{
 			logger.info("Mesagem recebida! ".concat(message));
 			 orderDTO = FiapUtils.converToOrderDTO(message);
 			 logger.info(orderDTO);
+
+			 if(orderDTO != null)
+				 orderService.postOrder(orderDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		//if(orderDTO != null)
-			//orderService.postOrder(orderDTO);
 			
 	}
 	

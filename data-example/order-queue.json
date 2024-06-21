@@ -1,0 +1,17 @@
+{
+    "id": 949494931532654,
+    "productQuantity": [
+        {
+            "id": 21547548156,
+            "product": {
+                "productId": 4320794,
+                "name": "Hamburguer",
+                "description": "Delicioso!!!",
+                "price": 6.50,
+                "CATEGORY": "LANCHE"
+            },
+            "quantity": 5
+        }
+    ],
+    "customerId": 2243615586
+}
