@@ -22,10 +22,10 @@ spring:
       hibernate:
         format_sql: true
   rabbitmq:
-    host: localhost
-    password: guest
-    port: 5672
-    username: guest
+    host: ${MESSAGE_BROKER_DOMAIN}
+    password: ${MESSAGE_BROKER_PASS}
+    port: ${MESSAGE_BROKER_PORT}
+    username: ${MESSAGE_BROKER_USER}
 logging:
   level:
     org:

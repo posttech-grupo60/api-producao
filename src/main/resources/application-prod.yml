@@ -14,6 +14,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  rabbitmq:
+    host: ${MESSAGE_BROKER_DOMAIN}
+    password: ${MESSAGE_BROKER_PASS}
+    port: ${MESSAGE_BROKER_PORT}
+    username: ${MESSAGE_BROKER_USER}
 logging:
   level:
     org:
@@ -22,4 +27,5 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
- 
+queue1:
+  name: pedido-recebido 
