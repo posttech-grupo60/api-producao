@@ -10,4 +10,8 @@ services:
       DATABASE_URL: jdbc:mysql://mysql-3751f86f-mysql-fiap4.e.aivencloud.com:17006/tech-producao?ssl-mode=REQUIRED
       DATABASE_USER: avnadmin
       DATABASE_PASS: AVNS_nJqyX7OAonD3J8MwL15
-      spring.profiles.active: prod   
+      spring.profiles.active: prod
+      MESSAGE_BROKER_DOMAIN: localhost
+      MESSAGE_BROKER_PASS: guest
+      MESSAGE_BROKER_PORT: "5672"
+      MESSAGE_BROKER_USER: guest   
