@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.fiap.techchallenge.api.producao.dto.OrderDTO;
 import br.fiap.techchallenge.api.producao.util.FiapUtils;
+import io.awspring.cloud.sqs.annotation.SqsListener;
 
 @Service
 public class OrderMessageListener implements IMessageListener{
@@ -20,7 +21,7 @@ public class OrderMessageListener implements IMessageListener{
 	OrderService orderService;
 	
 			
-	@RabbitListener(queues = {"${queue1.name}"})
+	@SqsListener("pedido-recebido")
 	@Override
 	public void receive(String message) {
 		OrderDTO orderDTO = null;

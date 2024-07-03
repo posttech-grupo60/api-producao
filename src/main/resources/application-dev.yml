@@ -36,5 +36,7 @@ logging:
               BasicBinder: TRACE
 queue1:
   name: pedido-recebido
-    
+aws:
+  sqs:
+    uri: http://localhost:4566
  
