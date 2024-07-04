@@ -21,7 +21,7 @@ public class OrderMessageListener implements IMessageListener{
 	OrderService orderService;
 	
 			
-	@SqsListener("pedido-recebido")
+	@SqsListener("${queue1.name}")
 	@Override
 	public void receive(String message) {
 		OrderDTO orderDTO = null;

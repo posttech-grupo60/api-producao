@@ -38,5 +38,5 @@ queue1:
   name: pedido-recebido
 aws:
   sqs:
-    uri: http://localhost:4566
+    uri: ${SQS_BROKER_URI}
  

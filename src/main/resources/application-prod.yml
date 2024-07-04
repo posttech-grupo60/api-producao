@@ -28,4 +28,8 @@ logging:
             sql:
               BasicBinder: TRACE
 queue1:
-  name: pedido-recebido 
+  name: pedido-recebido
+
+aws:
+  sqs:
+    uri: ${SQS_BROKER_URI}
