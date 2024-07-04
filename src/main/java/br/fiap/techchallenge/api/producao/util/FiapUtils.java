@@ -5,6 +5,9 @@ import java.time.ZoneId;
 
 import org.modelmapper.ModelMapper;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import br.fiap.techchallenge.api.producao.dto.OrderDTO;
 import br.fiap.techchallenge.api.producao.dto.ProductQuantityDTO;
 import br.fiap.techchallenge.api.producao.model.Order;
@@ -28,5 +31,12 @@ public abstract class FiapUtils {
 		
 		return mapper.map(pqDto, ProductQuantity.class);
 		
+	}
+
+	public static OrderDTO converToOrderDTO(String message) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer());
+		Gson gson = gsonBuilder.setPrettyPrinting().create();
+		return gson.fromJson(message, OrderDTO.class);
 	}
 }
